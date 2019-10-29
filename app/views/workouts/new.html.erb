@@ -3,8 +3,14 @@
   <%= simple_form_for @workout do |f| %>
     <%= f.input :title %>
     <%= f.input :video %>
-    <%= f.input :scheduled_date, as: :date, start_year: Date.today.year, start_day: Date.today.day,          order: [:month, :day, :year] %>
-    <%= f.input :scheduled_time %>
+    <%= f.input :scheduled_date,
+      as: :date,
+      start_year: Date.today.year,
+      start_day: Date.today.day,
+      order: [:month, :day, :year],
+      html5: true,
+      input_html: {value: Date.today} %>
+    <%= f.input :scheduled_time, as: :time.to_s %>
     <br />
     <%= f.submit 'Create', class: 'btn btn-primary' %>
   <% end %>

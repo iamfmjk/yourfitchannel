@@ -1,4 +1,4 @@
 <div class="col-10 offset -1">
   <h1><%= @workout.title %></h1>
-  <p>Scheduled for: <%= @workout.scheduled_date %> at <%= @workout.scheduled_time %></p>
+  <p>Scheduled for: <%= @workout.scheduled_date %> at <%= @workout.scheduled_time.to_formatted_s(:time) %></p>
 </div>

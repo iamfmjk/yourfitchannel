@@ -28,6 +28,9 @@
               <%= link_to 'Create workout', new_workout_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
+              <%= link_to 'Workouts', user_path(current_user), class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
               <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
             </li>
             <% else %>
