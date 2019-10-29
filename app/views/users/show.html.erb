@@ -1,0 +1,9 @@
+<div class="col-10 offset-1">
+  <h1>My Workouts</h1>
+  <% @user.workouts.each do |workout| %>
+    <div class="col-12 col-sm-6">
+      <h3><%=link_to workout.title, workout_path(workout) %></h3>
+    </div>
+  <% end %>
+
+</div>
