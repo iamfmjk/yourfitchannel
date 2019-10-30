@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :workouts
   has_many :playlists
+  has_many :videos
 
 
  def self.from_omniauth(auth)

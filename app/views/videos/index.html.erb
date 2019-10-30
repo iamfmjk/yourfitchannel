@@ -1,0 +1,8 @@
+<div class="col-8 mx-auto">
+  <h1>Search for YouTube Videos</h1>
+  <br />
+  <%= simple_form_for @video, url: user_videos_path do |f| %>
+    <%= f.input :URL %>
+    <%= f.submit 'Show video', class: 'btn-primary' %>
+  <% end %>
+</div>
