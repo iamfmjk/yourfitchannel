@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_034602) do
+ActiveRecord::Schema.define(version: 2019_10_30_230538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_034602) do
     t.string "youtube_id"
     t.string "url"
     t.string "thumbnail"
+    t.integer "user_id"
   end
 
   create_table "workouts", force: :cascade do |t|

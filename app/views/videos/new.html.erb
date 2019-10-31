@@ -6,34 +6,22 @@
     <%= f.submit 'Show video', class: 'btn-primary' %>
   <% end %>
   <br />
-  <% if @source_video && @source_video.video_id.present? %>
-    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div>
-
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: '<%= @source_video.video_id %>',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-      function onPlayerReady(event) {}
-      function onPlayerStateChange(event) {}
-    </script>
+  <% if @source_video && @source_video.youtube_id.present? %>
+    <%= VideosHelper::render_youtube_placeholder(@source_video.youtube_id) %>
+    <h3>Save video</h3>
+    <%= simple_form_for @video, url: user_videos_path do |f| %>
+      <%= f.hidden_field :youtube_id, value: @source_video.youtube_id %>
+      <%= f.submit 'Create', class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
+  <br />
+  <% if @videos.present? %>
+    <h3>My videos</h3>
+    <% @videos.each do |video| %>
+      <%= VideosHelper::render_youtube_placeholder(video.youtube_id) %>
+    <% end %>
+  <% end %>
+
+  <%# this line renders players for all the videos available %>
+  <%= VideosHelper::render_youtube_players(@youtube_ids) %>
 </div>

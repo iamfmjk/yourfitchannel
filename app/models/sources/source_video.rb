@@ -2,10 +2,10 @@ module Sources
   class SourceVideo
     include ActiveModel::Validations
     attr_reader :url
-    attr_reader :video_id
+    attr_reader :youtube_id
 
     validates :url, presence: true
-    validates :video_id, presence: { message: "URL must be for a single YouTube video" }
+    validates :youtube_id, presence: { message: "URL must be for a single YouTube video" }
 
     def initialize(url:)
       @url = url
@@ -13,11 +13,11 @@ module Sources
 
     def parse_url
       uri = URI.parse(@url)
-      @video_id = URI::decode_www_form(uri.query).to_h['v']
+      @youtube_id = URI::decode_www_form(uri.query).to_h['v']
     end
 
     def to_key
-      [@video_id] if @video_id
+      [@youtube_id] if @youtube_id
     end
 
   end
