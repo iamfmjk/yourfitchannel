@@ -7,11 +7,16 @@ class VideosController < ApplicationController
     @videos = current_user.videos.all
     @youtube_ids = @videos.map(&:youtube_id)
     @video = Video.new
+
     if source_video_params[:url].present?
       @source_video = Sources::SourceVideo.new(source_video_params.to_h.symbolize_keys)
       @source_video.parse_url
       @youtube_ids << @source_video.youtube_id
+      youtube_video = GoogleServices::YoutubeVideo.find(@source_video.youtube_id)
+      @video.title = youtube_video.title
     end
+
+
 
   end
 
@@ -23,7 +28,7 @@ class VideosController < ApplicationController
 
   private
   def video_params
-    params.require(:video).permit(:youtube_id)
+    params.require(:video).permit(:youtube_id, :title)
   end
 
   def source_video_params

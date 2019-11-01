@@ -11,6 +11,7 @@
     <h3>Save video</h3>
     <%= simple_form_for @video, url: user_videos_path do |f| %>
       <%= f.hidden_field :youtube_id, value: @source_video.youtube_id %>
+      <%= f.input :title %>
       <%= f.submit 'Create', class: 'btn btn-primary' %>
     <% end %>
   <% end %>
