@@ -1,10 +1,12 @@
-<div class="col-8 mx-auto">
-  <h1>Search for YouTube Videos</h1>
-  <br />
-  <%= simple_form_for @source_video || :source_video, url: new_user_video_path, method: 'GET' do |f| %>
-    <%= f.input :url %>
-    <%= f.submit 'Show video', class: 'btn-primary' %>
-  <% end %>
+<div class="col-10 mx-auto">
+  <div class="col-8 col-md-6 mx-auto">
+    <h3>Search for YouTube Videos</h3>
+    <br />
+    <%= simple_form_for @source_video || :source_video, url: new_user_video_path, method: 'GET' do |f| %>
+      <%= f.input :url %>
+      <%= f.submit 'Show video', class: 'btn-primary' %>
+    <% end %>
+  </div>
   <br />
   <% if @source_video && @source_video.youtube_id.present? %>
     <%= VideosHelper::render_youtube_placeholder(@source_video.youtube_id) %>
@@ -18,10 +20,20 @@
   <% end %>
   <br />
   <% if @videos.present? %>
-    <h3>My videos</h3>
-    <% @videos.each do |video| %>
-      <%= VideosHelper::render_youtube_placeholder(video.youtube_id) %>
-    <% end %>
+    <h3>My videos (<%= @videos.count %>)</h3>
+    <div class="card-columns">
+      <% @videos.each do |video| %>
+        <div class="card">
+          <%= image_tag(video.standard_thumbnail.to_s, class: 'img-fluid card-img-top') %>
+          <div class="card-body">
+            <%= video.title %>
+          </div>
+          <div class="card-footer">
+            <%= link_to 'Schedule workout', "#", class: 'card-link' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 
   <%# this line renders players for all the videos available %>

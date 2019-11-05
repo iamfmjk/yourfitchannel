@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   end
 
   def new
-    @videos = current_user.videos.all
+    @videos = current_user.videos.order(created_at: :desc)
     @youtube_ids = @videos.map(&:youtube_id)
     @video = Video.new
 
