@@ -12,6 +12,7 @@
     <%= simple_form_for @video, url: user_videos_path do |f| %>
       <%= f.hidden_field :youtube_id, value: @source_video.youtube_id %>
       <%= f.input :title %>
+      <%= f.hidden_field :standard_thumbnail, value: @video.standard_thumbnail %>
       <%= f.submit 'Create', class: 'btn btn-primary' %>
     <% end %>
   <% end %>

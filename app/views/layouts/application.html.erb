@@ -31,7 +31,7 @@
               <%= link_to 'Workouts', user_path(current_user), class: 'nav-link' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Playlists', user_playlists_path(current_user), class: 'nav-link' %>
+              <%= link_to 'Videos', new_user_video_path(current_user), class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
