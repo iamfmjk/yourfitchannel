@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   root 'static#index'
 
+
   resources :users do
     resources :videos do
       resources :workouts, only: [:new, :create]
+
     end
     resources :workouts
   end

@@ -4,7 +4,10 @@
   <%= month_calendar(events: @workouts) do |date, workouts| %>
     <div><%= date.day %></div>
     <% workouts.each do |workout| %>
-      <div><%= workout.title %> </div>
+      <div>
+        <%= workout.scheduled_for.strftime("%I:%M %p") %> -
+        <%= workout.title %>
+      </div>
     <% end %>
   <% end %>
 

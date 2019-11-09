@@ -1,0 +1,23 @@
+<div class="col-10 offset-1">
+  <h1>Today's workout</h1>
+    <% @workouts.each do |workout| %>
+      <% if workout.scheduled_for.to_s == Date.current %>
+        <h1>Today's workout</h1>
+        <%= workout.scheduled_for.strftime("at %I:%M %p") %> -
+        <%= workout.title %>
+        <% else %>
+        <%= link_to 'Create workout', '#' %>
+        <br />
+        <br />
+      <div>
+        <h2>Upcoming workouts</h2>
+        <%= workout.scheduled_for.strftime("%a, %b %d, %Y at %I:%M %p") %> -
+        <%= workout.title %>
+      </div>
+      <% end %>
+    <% end %>
+
+
+
+
+</div>

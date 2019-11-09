@@ -8,7 +8,7 @@ class WorkoutsController < ApplicationController
 
   def create
     @selected_video = Video.find(params[:video_id])
-    @workout = @selected_video.workouts.create(workout_params.merge(user_id: @selected_video.user_id, duration: @selected_video.duration))
+    @workout = @selected_video.workouts.create(workout_params.merge(user_id: @selected_video.user_id, title: @selected_video.title, duration: @selected_video.duration))
     if @workout.valid?
       redirect_to user_workouts_path
     else
@@ -17,7 +17,7 @@ class WorkoutsController < ApplicationController
   end
 
   def index
-    @workouts = Workout.all
+    @workouts = current_user.workouts
   end
 
   private
