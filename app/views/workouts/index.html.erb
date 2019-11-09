@@ -1,5 +1,14 @@
-<h1>workouts</h1>
-<% current_user.workouts.each do |workout| %>
-  <%= workout.title %>
-  <%= workout.scheduled_for %>
-<% end %>
+<div class="col-10 offset-1">
+  <h1>workouts</h1>
+
+  <%= month_calendar(events: @workouts) do |date, workouts| %>
+    <div><%= date.day %></div>
+    <% workouts.each do |workout| %>
+      <div><%= workout.title %> </div>
+    <% end %>
+  <% end %>
+
+
+
+
+</div>
