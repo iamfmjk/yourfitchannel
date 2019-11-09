@@ -25,10 +25,7 @@
         <ul class="navbar-nav">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to 'Create workout', new_workout_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Workouts', user_path(current_user), class: 'nav-link' %>
+              <%= link_to 'Workouts','#', class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to 'Videos', new_user_video_path(current_user), class: 'nav-link' %>

@@ -1,26 +1,28 @@
 class WorkoutsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def new
-    @workout = Workout.new
+    @selected_video = Video.find(params[:video_id])
+    @workout = @selected_video.workouts.new
   end
 
   def create
-    @workout = current_user.workouts.create(workout_params)
+    @selected_video = Video.find(params[:video_id])
+    @workout = @selected_video.workouts.create(workout_params.merge(user_id: @selected_video.user_id))
     if @workout.valid?
-      redirect_to user_path(current_user)
+      redirect_to user_workouts_path
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def show
-    @workout = Workout.find(params[:id])
+  def index
+    @workouts = Workout.all
   end
 
   private
 
   def workout_params
-    params.require(:workout).permit(:title, :scheduled_date, :scheduled_time, :video)
+    params.require(:workout).permit(:video_id, :user_id, :title, :scheduled_for)
   end
 end

@@ -15,6 +15,7 @@ class VideosController < ApplicationController
       youtube_video = GoogleServices::YoutubeVideo.find(@source_video.youtube_id)
       @video.title = youtube_video.title
       @video.standard_thumbnail = youtube_video.standard_thumbnail
+      @video.duration = youtube_video.duration
     end
 
 
@@ -29,7 +30,7 @@ class VideosController < ApplicationController
 
   private
   def video_params
-    params.require(:video).permit(:youtube_id, :title, :standard_thumbnail)
+    params.require(:video).permit(:youtube_id, :title, :standard_thumbnail, :duration)
   end
 
   def source_video_params

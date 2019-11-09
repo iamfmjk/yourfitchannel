@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_001510) do
+ActiveRecord::Schema.define(version: 2019_11_08_123556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,17 +46,17 @@ ActiveRecord::Schema.define(version: 2019_11_05_001510) do
     t.string "url"
     t.string "standard_thumbnail"
     t.integer "user_id"
+    t.integer "duration"
   end
 
   create_table "workouts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
-    t.date "scheduled_date"
-    t.time "scheduled_time"
     t.string "duration"
-    t.string "video"
     t.integer "user_id"
+    t.integer "video_id"
+    t.datetime "scheduled_for"
   end
 
 end

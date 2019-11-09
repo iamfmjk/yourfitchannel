@@ -10,8 +10,6 @@ module VideosHelper
     js_players = youtube_ids.map { |youtube_id|
       <<-JSPLAYER
       new YT.Player('#{self.youtube_player_id(youtube_id)}', {
-        height: '390',
-        width: '640',
         videoId: '#{youtube_id}',
         events: {
           'onReady': onPlayerReady,

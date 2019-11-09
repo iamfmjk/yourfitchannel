@@ -1,4 +1,4 @@
-<div class="col-10 mx-auto">
+<div class="col-12 mx-auto">
   <div class="col-8 col-md-6 mx-auto">
     <h3>Search for YouTube Videos</h3>
     <br />
@@ -9,14 +9,23 @@
   </div>
   <br />
   <% if @source_video && @source_video.youtube_id.present? %>
-    <%= VideosHelper::render_youtube_placeholder(@source_video.youtube_id) %>
-    <h3>Save video</h3>
-    <%= simple_form_for @video, url: user_videos_path do |f| %>
-      <%= f.hidden_field :youtube_id, value: @source_video.youtube_id %>
-      <%= f.input :title %>
-      <%= f.hidden_field :standard_thumbnail, value: @video.standard_thumbnail %>
-      <%= f.submit 'Create', class: 'btn btn-primary' %>
-    <% end %>
+  <div class="row border-bottom pb-3 pt-3 mb-3">
+    <div class="col-sm-6">
+      <div class="embed-responsive embed-responsive-16by9">
+        <%= VideosHelper::render_youtube_placeholder(@source_video.youtube_id) %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h3>Save video</h3>
+      <%= simple_form_for @video, url: user_videos_path do |f| %>
+        <%= f.hidden_field :youtube_id, value: @source_video.youtube_id %>
+        <%= f.input :title %>
+        <%= f.hidden_field :standard_thumbnail, value: @video.standard_thumbnail %>
+        <%= f.hidden_field :duration, value: @video.duration %>
+        <%= f.submit 'Create', new_user_video_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+    </div>
   <% end %>
   <br />
   <% if @videos.present? %>
@@ -24,14 +33,16 @@
     <div class="card-columns">
       <% @videos.each do |video| %>
         <div class="card">
-          <%= image_tag(video.standard_thumbnail.to_s, class: 'img-fluid card-img-top') %>
-          <div class="card-body">
-            <%= video.title %>
+          <div class="embed-responsive embed-responsive-4by3">
+            <%= VideosHelper::render_youtube_placeholder(video.youtube_id) %>
           </div>
-          <div class="card-footer">
-            <%= link_to 'Schedule workout', "#", class: 'card-link' %>
-          </div>
+        <div class="card-body">
+          <%= video.title %>
         </div>
+        <div class="card-footer">
+          <%= link_to 'Schedule workout', new_user_video_workout_path(current_user, video), class: 'card-link' %>
+        </div>
+      </div>
       <% end %>
     </div>
   <% end %>

@@ -1,0 +1,5 @@
+<h1>workouts</h1>
+<% current_user.workouts.each do |workout| %>
+  <%= workout.title %>
+  <%= workout.scheduled_for %>
+<% end %>

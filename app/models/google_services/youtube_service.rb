@@ -12,5 +12,10 @@ module GoogleServices
       return youtube.list_videos("snippet", id: youtube_id)
     end
 
+    def self.get_youtube_video_details(youtube_id)
+      youtube = self.get_service
+      return youtube.list_videos("content_details", id: youtube_id)
+    end
+
   end
 end

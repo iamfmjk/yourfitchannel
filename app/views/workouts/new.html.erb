@@ -1,17 +1,13 @@
-<div class="col-10 offset-1">
-  <h1>Create new workout</h1>
-  <%= simple_form_for @workout do |f| %>
-    <%= f.input :title %>
-    <%= f.input :video %>
-    <%= f.input :scheduled_date,
-      as: :date,
-      start_year: Date.today.year,
-      start_day: Date.today.day,
-      order: [:month, :day, :year],
-      html5: true,
-      input_html: {value: Date.today} %>
-    <%= f.input :scheduled_time, as: :time.to_s %>
-    <br />
-    <%= f.submit 'Create', class: 'btn btn-primary' %>
+<h1>Add some</h1>
+
+<%= simple_form_for @workout, url: user_video_workouts_path do |f| %>
+  <% if @workout.errors.any? %>
+    <%= @workout.errors.full_messages %>
   <% end %>
-</div>
+  <%= f.input :title %>
+  <%= f.input :video_id, default: :video_id %>
+  <%= f.input :scheduled_for,
+    order: [:month, :day, :year],
+    html5: true %>
+    <%= f.submit 'Create' %>
+<% end %>
