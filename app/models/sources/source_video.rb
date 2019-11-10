@@ -13,7 +13,11 @@ module Sources
 
     def parse_url
       uri = URI.parse(@url)
-      @youtube_id = URI::decode_www_form(uri.query).to_h['v']
+      if uri.host.include? "youtu.be"
+        @youtube_id = URI(uri).path.split("/").last
+      else
+        @youtube_id = URI::decode_www_form(uri.query).to_h['v']
+      end
     end
 
     def to_key

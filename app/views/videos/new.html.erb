@@ -29,9 +29,9 @@
   <% end %>
   <br />
   <% if @videos.present? %>
-    <h3>My videos (<%= @videos.count %>)</h3>
+    <h3>Recently added videos <span><%= link_to '| View all', '#' %></span></h3>
     <div class="card-columns">
-      <% @videos.each do |video| %>
+      <% @videos.last(3).each do |video| %>
         <div class="card">
           <div class="embed-responsive embed-responsive-4by3">
             <%= VideosHelper::render_youtube_placeholder(video.youtube_id) %>

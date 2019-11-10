@@ -17,8 +17,18 @@ class WorkoutsController < ApplicationController
   end
 
   def index
-    @workouts = current_user.workouts
+    @workouts = current_user.workouts.order(scheduled_for: :asc)
+    @upcoming_workouts = current_user.workouts.where("scheduled_for >= ?", Time.current).order(scheduled_for: :asc)
+    if params[:list]
+      render 'workouts_list'
+    else
+      render 'index'
+    end
   end
+
+def select_upcoming_workouts
+
+end
 
   private
 

@@ -5,7 +5,6 @@
     <%= @workout.errors.full_messages %>
   <% end %>
   <%= f.input :title, input_html: { value: @selected_video.title } %>
-  <%= f.input :video_id, default: :video_id %>
   <%= f.input :scheduled_for,
     order: [:month, :day, :year],
     html5: true %>

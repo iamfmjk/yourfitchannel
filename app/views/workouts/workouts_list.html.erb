@@ -1,0 +1,11 @@
+<div class="col-10 offset-1">
+<h2>Scheduled workouts</h2>
+<%= link_to 'Create workout', '#' %>
+  <% @upcoming_workouts.each do |workout| %>
+  <div>
+      <%= workout.scheduled_for.strftime("%a, %b %d, %Y at %I:%M %p") %> -
+      <%= workout.title %>
+      </div>
+  <% end %>
+
+</div>
