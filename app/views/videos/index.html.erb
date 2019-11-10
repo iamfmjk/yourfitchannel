@@ -1,8 +1,27 @@
-<div class="col-8 mx-auto">
-  <h1>Search for YouTube Videos</h1>
-  <br />
-  <%= simple_form_for @video, url: user_videos_path do |f| %>
-    <%= f.input :URL %>
-    <%= f.submit 'Show video', class: 'btn-primary' %>
+<div class="col-10 mx-auto">
+  <h1>Video Library</h1>
+  <% if current_user.videos.present? %>
+    <div class="card-columns">
+      <% current_user.videos.each do |video| %>
+        <div class="card">
+          <div class="embed-responsive embed-responsive-4by3">
+            <%= VideosHelper::render_youtube_placeholder(video.youtube_id) %>
+          </div>
+          <div class="card-body">
+            <%= video.title %>
+          </div>
+          <div class="card-footer">
+            <%= link_to 'Schedule workout', new_user_video_workout_path(current_user, video), class: 'card-link' %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+  <% else %>
+    <div class="col-6 mx-auto">
+      <p>You don't have any videos yet. </p>
+      <p><%= link_to 'Add videos to your library', new_user_video_path(current_user) %></p>
+    </div>
   <% end %>
+  <%# this line renders players for all the videos available %>
+  <%= VideosHelper::render_youtube_players(@youtube_ids) %>
 </div>

@@ -1,7 +1,4 @@
 class VideosController < ApplicationController
-  def index
-
-  end
 
   def new
     @videos = current_user.videos.order(created_at: :desc)
@@ -17,15 +14,17 @@ class VideosController < ApplicationController
       @video.standard_thumbnail = youtube_video.standard_thumbnail
       @video.duration = youtube_video.duration
     end
-
-
-
   end
 
   def create
     @video = current_user.videos.create(video_params)
     @video.save
     redirect_to action: :new
+  end
+
+  def index
+    @videos = current_user.videos.order(created_at: :desc)
+    @youtube_ids = @videos.map(&:youtube_id)    
   end
 
   private

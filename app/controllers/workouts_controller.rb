@@ -6,6 +6,7 @@ class WorkoutsController < ApplicationController
     @workout = @selected_video.workouts.new
   end
 
+
   def create
     @selected_video = Video.find(params[:video_id])
     @workout = @selected_video.workouts.create(workout_params.merge(user_id: @selected_video.user_id, duration: @selected_video.duration))
@@ -25,10 +26,6 @@ class WorkoutsController < ApplicationController
       render 'index'
     end
   end
-
-def select_upcoming_workouts
-
-end
 
   private
 
