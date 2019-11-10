@@ -13,4 +13,11 @@ FactoryBot.define do
     youtube_id {"v7AYKMP6rOE"}
     association :user
   end
+
+  factory :workout do
+    title {"Video Title for Workout"}
+    scheduled_for {"2019-11-17 19:40:00"}
+    association :video
+    association :user 
+  end
 end

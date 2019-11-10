@@ -24,10 +24,11 @@ class VideosController < ApplicationController
 
   def index
     @videos = current_user.videos.order(created_at: :desc)
-    @youtube_ids = @videos.map(&:youtube_id)    
+    @youtube_ids = @videos.map(&:youtube_id)
   end
 
   private
+
   def video_params
     params.require(:video).permit(:youtube_id, :title, :standard_thumbnail, :duration)
   end

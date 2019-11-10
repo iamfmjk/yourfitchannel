@@ -1,0 +1,12 @@
+<div class="col-12 mx-auto mt-1">
+<h1 class="text-center">Schedule a workout</h1>
+<div class="col-sm-8 col-md-6 mx-auto card mt-3 py-3">
+  <%= simple_form_for @workout, url: user_video_workout_path do |f| %>
+    <%= f.input :title %>
+    <%= f.input :scheduled_for,
+      order: [:month, :day, :year],
+      html5: true %>
+    <%= f.submit 'Update', class: "btn btn-outline-info float-right" %>
+  <% end %>
+</div>
+</div>

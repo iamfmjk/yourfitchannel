@@ -6,10 +6,10 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :videos do
-      resources :workouts, only: [:new, :create]
+      resources :workouts, only: [:new, :create, :edit, :update]
 
     end
-    resources :workouts
+    resources :workouts, only: [:index, :show]
   end
 
   end
