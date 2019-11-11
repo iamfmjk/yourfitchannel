@@ -70,11 +70,11 @@ RSpec.describe WorkoutsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in workout.user
       patch :update, params: {id: workout.id, workout: {title: "Some new title"}, video_id: video.id, user_id: user.id}
-      expect(response).to redirect_to user_workouts_path
+      expect(response).to redirect_to user_workout_path(workout.user, workout)
       workout.reload
       expect(workout.title).to eq("Some new title")
     end
-    
+
   end
 
 end

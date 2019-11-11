@@ -6,7 +6,7 @@
     <% workouts.each do |workout| %>
       <div>
         <%= workout.scheduled_for.strftime("%I:%M %p") %> -
-        <%= workout.title %>
+        <%= link_to workout.title, user_workout_path(current_user, workout) %>
       </div>
     <% end %>
   <% end %>

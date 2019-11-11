@@ -44,9 +44,12 @@
         <div class="card-body">
           <%= video.title %>
         </div>
+        <% if current_user.present? && current_user = video.user %>
         <div class="card-footer">
           <%= link_to 'Schedule workout', new_user_video_workout_path(current_user, video), class: 'card-link' %>
+          <%= link_to 'Delete', user_video_path(current_user, video), method: :delete, data: {confirm: 'This will also delete all the associated workouts. Are you sure?'}, class: 'card-link text-danger' %>
         </div>
+        <% end %>
       </div>
       <% end %>
     </div>

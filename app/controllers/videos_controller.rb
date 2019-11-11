@@ -35,6 +35,15 @@ class VideosController < ApplicationController
     @youtube_ids = @videos.map(&:youtube_id)
   end
 
+  def destroy
+    @video = current_user.videos.find_by_id(params[:id])
+    render plain: "Not found", status: :not_found if @video.blank?
+    render plain: "Not allowed", status: :forbidden if @video.user != current_user
+    @video.destroy
+    flash[:notice] = "The video and all the associated workouts are now deleted"
+    return redirect_to user_videos_path
+  end
+
   private
 
   def video_params

@@ -11,7 +11,8 @@ class WorkoutsController < ApplicationController
     if @workout.valid?
       redirect_to user_workouts_path, success: 'New workout is scheduled!'
     else
-      render :new, error: 'Workout can\'t be scheduled. Check the details below.'
+      flash[:alert] = 'Workout can\'t be scheduled. Check the details below.'
+      render :new
     end
   end
 
@@ -45,15 +46,22 @@ class WorkoutsController < ApplicationController
     end
     @workout.update_attributes(workout_params)
     if @workout.save
-      redirect_to user_workouts_path, notice: "Workout has been updated."
+      flash[:notice] = "Workout has been updated."
+      redirect_to user_workout_path(current_user, @workout)
     else
-      return render :edit, error: "Workout can't be updated. CHeck the details below."
+      flash[:alert] = "Workout can't be updated. CHeck the details below."
+      return render :edit
     end
   end
 
-  # def show
-  # end
-  #
+  def show
+    @workout = Workout.find_by_id(params[:id])
+    if @workout.blank?
+      flash[:alert] = "Requested workout is not found"
+      return redirect_to user_workouts_path
+    end
+  end
+
   # def destroy
   # end
 
