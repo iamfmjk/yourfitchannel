@@ -71,3 +71,4 @@ gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'omniauth-google-oauth2'
 gem 'google-api-client', '~> 0.11'
 gem 'simple_calendar', '~> 2.0'
+gem "figaro"

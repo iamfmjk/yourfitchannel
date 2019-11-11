@@ -299,8 +299,8 @@ Devise.setup do |config|
 
   # Google OAuth setup
 
-  client_id = Rails.application.credentials[:google_client_id]
-  client_secret = Rails.application.credentials[:google_client_secret]
+  client_id = ENV["google_client_id"]
+  client_secret = ENV["google_client_secret"]
   # Configure Google omniauth with proper scope
   config.omniauth :google_oauth2, client_id, client_secret, {
     scope: "userinfo.email"

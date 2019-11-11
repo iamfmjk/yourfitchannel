@@ -3,7 +3,7 @@ module GoogleServices
 
     def self.get_service
       youtube = Google::Apis::YoutubeV3::YouTubeService.new
-      youtube.key = Rails.application.credentials[:youtube_api_key]
+      youtube.key = ENV["youtube_api_key"]
       return youtube
     end
 
