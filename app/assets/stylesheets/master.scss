@@ -1,2 +1,11 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:100,400,700|Noto+Serif:400,700&display=swap');
+.one-line-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .form-group {
+    width: 100%;
+  }
+  
+}

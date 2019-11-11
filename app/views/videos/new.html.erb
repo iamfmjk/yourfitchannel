@@ -1,25 +1,29 @@
-<div class="col-12 mx-auto">
-  <div class="col-8 col-md-6 mx-auto">
-    <h3>Search for YouTube Videos</h3>
+<div class="col-12 col-lg-10 px-4 mx-auto mt-3">
+  <div class="col-md-8 mx-auto">
+    <h1 class="text-center">Add YouTube Videos</h1>
+    <p class="lead text-center">Start with creating a colletion of videos. Once you add the YouTube video, you will be able to create and schedule a workout with it.</p>
     <br />
     <%= simple_form_for @source_video || :source_video, url: new_user_video_path, method: 'GET' do |f| %>
-
-      <%= f.input :url %>
-      <%= f.submit 'Show video', class: 'btn-primary' %>
+    <div class="row mx-0">
+      <%= f.input :url, label: false, placeholder: 'Paste YouTube video link here', wrapper_html: { class: 'col-9 px-2' }%>
+      <div class="form-group">
+      <%= f.submit 'Show video', class: 'btn btn-info' %>
+      </div>
+    </div>
     <% end %>
   </div>
   <br />
   <% if @source_video && @source_video.youtube_id.present? %>
-  <div class="row border-bottom pb-3 pt-3 mb-3">
+  <div class="row border-bottom py-3 mb-3">
     <div class="col-sm-6">
       <div class="embed-responsive embed-responsive-16by9">
         <%= VideosHelper::render_youtube_placeholder(@source_video.youtube_id) %>
       </div>
     </div>
-      <div class="col-sm-6">
-        <h3>Save video to your library</h3>
+      <div class="col-sm-6 px-4">
+        <h4>Save video to your library:</h4>
         <br />
-        <h4><%= @video.title %></h4>
+        <h5><%= @video.title %></h5>
         <p>Video duration: <%= @video.duration %> minutes</p>
 
         <%= simple_form_for @video, url: user_videos_path do |f| %>
@@ -27,7 +31,7 @@
           <%= f.hidden_field :standard_thumbnail, value: @video.standard_thumbnail %>
           <%= f.hidden_field :title %>
           <%= f.hidden_field :duration, value: @video.duration %>
-          <%= f.submit 'Save', class: 'btn btn-primary' %>
+          <%= f.submit 'Save it', class: 'btn btn-info' %>
         <% end %>
       </div>
     </div>
