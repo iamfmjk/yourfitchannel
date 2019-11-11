@@ -9,7 +9,8 @@ class WorkoutsController < ApplicationController
   def create
     @workout = selected_video.workouts.create(workout_params.merge(user_id: selected_video.user_id, duration: selected_video.duration))
     if @workout.valid?
-      redirect_to user_workouts_path, success: 'New workout is scheduled!'
+      flash[:notice] = 'New workout is scheduled!'
+      redirect_to user_workouts_path
     else
       flash[:alert] = 'Workout can\'t be scheduled. Check the details below.'
       render :new
@@ -55,15 +56,27 @@ class WorkoutsController < ApplicationController
   end
 
   def show
+    @videos = current_user.videos.order(created_at: :desc)
+    @youtube_ids = @videos.map(&:youtube_id)
     @workout = Workout.find_by_id(params[:id])
     if @workout.blank?
       flash[:alert] = "Requested workout is not found"
       return redirect_to user_workouts_path
     end
+    @workout_youtube_id = @workout.video.youtube_id
   end
 
-  # def destroy
-  # end
+  def destroy
+    @workout = Workout.find_by_id(params[:id])
+    if @workout.blank?
+      flash[:alert] = "Requested workout is not found"
+      return redirect_to user_workouts_path
+    end
+    @workout.destroy
+    flash[:notice] = "Workout has been deleted"
+    return redirect_to user_workouts_path
+
+  end
 
   helper_method :selected_video
   def selected_video

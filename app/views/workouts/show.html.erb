@@ -1,1 +1,25 @@
-<h1>Look!</h1>
+<div class="col-12 mx-auto mt-3">
+  <h1 class="text-center"><%= @workout.title %></h1>
+    <br />
+  <div class="col-10 col-md-8 mx-auto mt-3">
+    <ul class="bg-light list-inline p-2">
+      <li class="list-inline-item pr-2">
+        <span class="font-weight-bold">Duration:</span> <%= @workout.duration %> minutes
+      </li>
+      <li class="list-inline-item">
+        <span class="font-weight-bold">Scheduled for:</span> <%= @workout.scheduled_for.strftime("%a, %b %d, %Y at %I:%M %p") %>
+      </li>
+    </ul>
+    <div class="embed-responsive embed-responsive-16by9">
+      <%= VideosHelper::render_youtube_placeholder(@workout_youtube_id) %>
+    </div>
+    <% if current_user.present? && current_user = @workout.user %>
+    <div class="text-center mt-4 bg-light p-3">
+      <%= link_to "Edit workout", edit_user_video_workout_path(current_user, @workout), class: "text-info px-4" %>
+      <%= link_to "Delete", user_video_workout_path(current_user, @workout), method: :delete, data: {confirm: "Are you sure?"}, class: "text-danger px-4" %>
+    </div>
+    <% end %>
+  </div>
+  <%# this line renders players for all the videos available %>
+  <%= VideosHelper::render_youtube_players(@youtube_ids) %>
+</div>
