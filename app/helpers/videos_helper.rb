@@ -14,6 +14,9 @@ module VideosHelper
         events: {
           'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
+        },
+        playerVars: {
+          'origin' : window.location.origin
         }
       });
       JSPLAYER
