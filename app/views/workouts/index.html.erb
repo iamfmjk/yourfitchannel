@@ -1,6 +1,7 @@
 <div class="col-12 col-lg-10 mx-auto mt-3">
   <h1>Workout Schedule <span class="title-link ml-3"><%= link_to "View as a list", user_workouts_path(list: true) %></span></h1>
   <hr />
+  <%= link_to 'Create workout', user_videos_path(current_user), class: 'btn btn-outline-info mb-3' %>
   <br />
   <%= month_calendar(events: @workouts) do |date, workouts| %>
     <div><%= date.day %></div>

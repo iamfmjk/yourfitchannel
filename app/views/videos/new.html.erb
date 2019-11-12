@@ -40,7 +40,7 @@
     <h3>Recently added videos <span class="title-link ml-3"><%= link_to '| View all', user_videos_path(current_user) %></span></h3>
     <hr />
     <div class="card-columns">
-      <% @videos.last(3).each do |video| %>
+      <% @videos.limit(3).each do |video| %>
         <div class="card">
           <div class="embed-responsive embed-responsive-4by3">
             <%= VideosHelper::render_youtube_placeholder(video.youtube_id) %>
