@@ -1,8 +1,7 @@
-<div class="col-12 col-lg-10 px-4 mx-auto mt-3">
+<div class="col-12 col-lg-10 mx-auto mt-3">
   <div class="col-md-8 mx-auto">
     <h1 class="text-center">Add YouTube Videos</h1>
     <p class="lead text-center">Start with creating a colletion of videos. Once you add the YouTube video, you will be able to create and schedule a workout with it.</p>
-    <br />
     <%= simple_form_for @source_video || :source_video, url: new_user_video_path, method: 'GET' do |f| %>
     <div class="row mx-0">
       <%= f.input :url, label: false, placeholder: 'Paste YouTube video link here', wrapper_html: { class: 'col-9 px-2' }%>
@@ -14,7 +13,7 @@
   </div>
   <br />
   <% if @source_video && @source_video.youtube_id.present? %>
-  <div class="row border-bottom py-3 mb-3">
+  <div class="row border-bottom py-3 px-4 mb-3">
     <div class="col-sm-6">
       <div class="embed-responsive embed-responsive-16by9">
         <%= VideosHelper::render_youtube_placeholder(@source_video.youtube_id) %>
