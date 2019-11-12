@@ -41,6 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails'
+  gem 'font-awesome-sass', '~> 5.11.2'
 end
 
 group :development do

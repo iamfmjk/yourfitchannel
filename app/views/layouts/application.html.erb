@@ -10,39 +10,42 @@
   </head>
 
   <body>
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <%= link_to 'YFC', root_path, class: 'navbar-brand' %>
+    <div id="flex-content-container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-blue">
+        <%= link_to 'Your Fit Channel', root_path, class: 'navbar-brand' %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav navbar-nav mr-auto mt-2 mt-md-0">
-          <li class="nav-item">
-            <%= link_to "Features", "#", class: "nav-link" %>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarNav">
           <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'Workouts','#', class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Videos', new_user_video_path(current_user), class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-            </li>
-            <% else %>
+            <ul class="navbar-nav navbar-nav mr-auto mr-sm-4 mt-2 mt-md-0">
+              <li class="nav-item">
+                <%= link_to 'Workouts', user_workouts_path(current_user), class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Add Videos', new_user_video_path(current_user), class: 'nav-link' %>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item mr-4">
+                <span class="navbar-text font-weight-light">Signed in as: <%= current_user.email %></span>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+              </li>
+            </ul>
+
+          <% else %>
+            <ul class="navbar-nav">
               <li class="nav-item">
                 <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
               </li>
               <li class="nav-item">
                 <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
               </li>
+            </ul>
           <% end %>
-        </ul>
-      </div>
+        </div>
       </nav>
       <% if notice.present? %>
         <p class="alert alert-info"><%= notice %></p>
@@ -50,7 +53,21 @@
       <% if alert.present? %>
         <p class="alert alert-danger"><%= alert %></p>
       <%end %>
-    </div>
+
     <%= yield %>
+
+    </div>
+    <div id="footer" class="p-3">
+      <div class="row mx-5">
+          <div class="col-sm-9 font-weight-ligh text-center pt-2">
+            <span class="font-weight-ligh">Made by Iuliia Kolomiiets as a graduation project for Berkeley Extension Coding Bootcamp</span>
+          </div>
+          <div class="col-sm-3 text-center">
+            <%= link_to 'http://github.com/' do %>
+              <i class="fab fa-github fa-2x"></i> <span>iamfmjk</span>
+            <% end %>
+          </div>
+        </div>
+        </div>
   </body>
 </html>
