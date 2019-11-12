@@ -14,7 +14,7 @@
       <%= VideosHelper::render_youtube_placeholder(@workout_youtube_id) %>
     </div>
     <% if current_user.present? && current_user = @workout.user %>
-    <div class="text-center mt-4 bg-light p-3">
+    <div class="text-center my-4 bg-light p-3">
       <%= link_to "Edit workout", edit_user_video_workout_path(current_user, @workout), class: "text-info px-4" %>
       <%= link_to "Delete", user_video_workout_path(current_user, @workout), method: :delete, data: {confirm: "Are you sure?"}, class: "text-danger px-4" %>
     </div>

@@ -1,10 +1,11 @@
-<div class="col-10 offset-1">
-  <h1>workouts</h1> | <p><%= link_to "View as a list", user_workouts_path(list: true) %></p>
-
+<div class="col-12 col-lg-10 mx-auto mt-3">
+  <h1>Workout Schedule <span class="title-link ml-3"><%= link_to "View as a list", user_workouts_path(list: true) %></span></h1>
+  <hr />
+  <br />
   <%= month_calendar(events: @workouts) do |date, workouts| %>
     <div><%= date.day %></div>
     <% workouts.each do |workout| %>
-      <div>
+      <div class="workout-info">
         <%= workout.scheduled_for.strftime("%I:%M %p") %> -
         <%= link_to workout.title, user_workout_path(current_user, workout) %>
       </div>

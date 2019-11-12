@@ -1,11 +1,16 @@
-<div class="col-10 offset-1">
-<h2>Scheduled workouts</h2>
-<%= link_to 'Create workout', '#' %>
-  <% @upcoming_workouts.each do |workout| %>
-  <div>
-      <%= workout.scheduled_for.strftime("%a, %b %d, %Y at %I:%M %p") %> -
-      <%= link_to workout.title, user_workout_path(current_user, workout) %>
-      </div>
-  <% end %>
+<div class="col-12 col-lg-10 mx-auto mt-3">
+<h1>Workout Schedule <span class="title-link ml-3"><%= link_to "View as a calendar", user_workouts_path %></span></h1>
+<hr />
 
+<%= link_to 'Create workout', user_videos_path(current_user), class: 'btn btn-outline-info' %>
+<dl class="row mt-3">
+  <% @upcoming_workouts.each do |workout| %>
+    <dt class="col-sm-3 pb-3">
+      <%= workout.scheduled_for.strftime("%a, %b %d, %Y at %I:%M %p") %>
+    </dt>
+    <dd class="col-sm-9 pb-3">
+      <%= link_to workout.title, user_workout_path(current_user, workout) %>
+    </dd>
+  <% end %>
+</dl>
 </div>

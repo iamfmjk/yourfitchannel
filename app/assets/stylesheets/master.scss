@@ -3,6 +3,14 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+a {
+  color: #18908f;
+}
+
+a:hover {
+  color: #55afac;
+}
+
 .bg-blue {
   background-color: #034a56;
 }
@@ -19,6 +27,9 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+.nav-brand {
+  font-family: 'Kalam', coursive;
+}
 .main {
   background:
     linear-gradient(
@@ -61,4 +72,13 @@
   font-style: normal;
   text-align: center;
   font-size: 3rem;
+}
+
+
+.title-link {
+  font-size: 16px;
+}
+
+.workout-info {
+  font-size: 14px;
 }

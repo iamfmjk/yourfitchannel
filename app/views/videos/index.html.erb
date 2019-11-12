@@ -1,5 +1,6 @@
-<div class="col-10 mx-auto">
+<div class="col-12 col-lg-10 mx-auto mt-3">
   <h1>Video Library</h1>
+  <hr />
   <% if current_user.videos.present? %>
     <div class="card-columns">
       <% current_user.videos.each do |video| %>
