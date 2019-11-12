@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Graduation project for Berkeley Extension Coding bootcamp.
+
+https://yourfitchannel.herokuapp.com/
 
 Things you may want to cover:
 
-* Ruby version
+* What it's all about
 
-* System dependencies
+Grab a link to that cool yoga video, schedule yourself a workout, go get happy and healthy :)
 
-* Configuration
+* What's inside (other than the obvious Ruby and Rails stuff)
 
-* Database creation
+- Devise authentication with Google OmniAuth2
+- YouTube Player and Video API integration
+- Simple-calendar
+- Some Rspec tests
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
