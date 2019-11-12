@@ -303,6 +303,7 @@ Devise.setup do |config|
   client_secret = ENV["google_client_secret"]
   # Configure Google omniauth with proper scope
   config.omniauth :google_oauth2, client_id, client_secret, {
+    skip_jwt: true, 
     scope: "userinfo.email"
   }
 end
